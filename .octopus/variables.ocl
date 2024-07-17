@@ -26,18 +26,18 @@ variable "spec:template:spec:containers:0:env:3:value" {
     }
 }
 
-variable "Octopus.Azure.Account" {
-    type = "AzureAccount"
-
-    value "demo-octopus-app" {
-        action = ["create-namespace-if-not-exists"]
-    }
-}
-
 variable "Project.Labels.Component" {
     value "productservice" {}
 }
 
 variable "Project.Deployment.Name" {
     value "octopub-productservice-deployment" {}
+}
+
+variable "old-Octopus.Azure.Account" {
+    type = "AzureAccount"
+
+    value "demo-octopus-app" {
+        action = ["create-namespace-if-not-exists"]
+    }
 }
