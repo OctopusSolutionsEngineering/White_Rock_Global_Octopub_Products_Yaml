@@ -52,10 +52,15 @@ step "deploy-product-deployment" {
             Octopus.Action.KubernetesContainers.CustomResourceYamlFileName = "*.yaml"
             Octopus.Action.KubernetesContainers.Namespace = "#{Octopub.Yaml.Cluster.Namespace}"
             Octopus.Action.Package.JsonConfigurationVariablesTargets = "**/*.{yml,yaml}"
-            Octopus.Action.RunOnServer = "false"
             Octopus.Action.Script.ScriptSource = "GitRepository"
+            OctopusUseBundledTooling = "False"
         }
-        worker_pool_variable = ""
+        worker_pool = "hosted-ubuntu"
+
+        container {
+            feed = "docker-hub"
+            image = "octopusdeploy/worker-tools:6.2.1-ubuntu.22.04"
+        }
 
         packages "octopub-products" {
             acquisition_location = "NotAcquired"
